@@ -1,7 +1,7 @@
 {
   "name": "back-tenis",
   "version": "1.0.0",
-  "description": "",
+  "description": "��#\u0000 \u0000b\u0000a\u0000c\u0000k\u0000-\u0000t\u0000e\u0000n\u0000i\u0000s\u0000\r\u0000 \u0000",
   "main": "index.js",
   "type": "module",
   "scripts": {
@@ -17,5 +17,13 @@
   },
   "devDependencies": {
     "nodemon": "^2.0.20"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vitorMoraes03/back-tenis.git"
+  },
+  "bugs": {
+    "url": "https://github.com/vitorMoraes03/back-tenis/issues"
+  },
+  "homepage": "https://github.com/vitorMoraes03/back-tenis#readme"
 }
