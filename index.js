@@ -1,15 +1,22 @@
-// Esse código esta comentado para fins pessoais de estudo.
-
 import express from "express";
 import * as dotenv from "dotenv";
-import cors from "cors";
+import { connectToDB } from "./config/db.config.js";
+import cors from "cors"; 
+import { shoesRouter } from "./routes/shoes.routes.js";
+import { userRouter } from "./routes/user.routes.js";
+import { orderRouter } from "./routes/order.routes.js";
 
-dotenv.config(); //Permite config arquivos .env
+dotenv.config(); 
 const app = express();
+connectToDB();
 
-app.use(express.json()); //Middleware do próprio express, para parsear requisições em Json.
-app.use(cors());  //Middleware para cors.
+app.use(express.json());
+app.use(cors());  
 
-app.listen(4000, () => {
-  console.log("Server rodando teste vitor");
+app.use("/shoes", shoesRouter);
+app.use("/user", userRouter);
+app.use("/order", orderRouter);
+
+app.listen(Number(process.env.PORT), () => {
+  console.log(`Server rodando na porta ${process.env.PORT}`);
 });
