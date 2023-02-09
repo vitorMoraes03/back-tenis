@@ -3,6 +3,9 @@ import { ShoesModel } from "../models/shoes.model.js";
 
 const shoesRouter = express.Router();
 
+// Essa rota não tem muita importância.
+// Deixei apenas uma rota de post, para criar alguns tênis pelo Insomnia.
+
 shoesRouter.post(
     "/create",
     async (req, res) => {
