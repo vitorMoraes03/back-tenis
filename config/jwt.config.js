@@ -1,5 +1,12 @@
 import jwt from "jsonwebtoken";
 
+// O JSON Web Token é um padrão da Internet para a criação de dados 
+// com assinatura opcional e/ou criptografia cujo payload contém o JSON 
+// que afirma algum número de declarações. Os tokens são assinados usando 
+// um segredo privado ou uma chave pública/privada. 
+
+// Ou seja, aqui irá ser gerado o Token.
+
 export function generateToken(user) {
     const { _id, name, email } = user;
   

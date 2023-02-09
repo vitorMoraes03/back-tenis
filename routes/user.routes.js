@@ -1,5 +1,7 @@
 import express from "express";
 import { UserModel } from "../models/user.model.js";
+import isAuth from "../middlewares/isAuth.js";
+import attachCurrentUser from "../middlewares/attachCurrentUser.js";
 import bcrypt from "bcrypt";
 import { generateToken } from "../config/jwt.config.js";
 
@@ -80,5 +82,63 @@ userRouter.post(
         return res.status(500).json(err);
     }
 });
+
+userRouter.get(
+    "/profile", 
+    isAuth,
+    attachCurrentUser, 
+    async(req, res) => {
+        try {
+            const user = 
+            await UserModel.findOne({ _id: req.currentUser._id })
+            .populate('orders')
+            .populate('adress'); 
+            return res.status(200).json(user);
+        } catch (err) {
+            console.log(err);
+        }
+})
+
+userRouter.put(
+    "/edit",
+    isAuth,
+    attachCurrentUser,
+    async (req, res) => {
+        try {
+            const loggedInUser = req.currentUser;
+
+            const updatedUser = await UserModel.findOneAndUpdate(
+                { _id: loggedInUser._id },
+                { ...req.body },
+                { new: true, runValidators: true }
+            )
+
+            return res.status(200).json(updatedUser);
+        } catch (err) {
+            console.log(err);
+            return res.status(500).json(err);
+        }
+    }
+)
+
+userRouter.delete(
+    "/delete",
+    isAuth,
+    attachCurrentUser,
+    async (req, res) => {
+        try {
+            const loggedInUser = req.currentUser;
+
+            const deleteUser = await UserModel.deleteOne({
+                _id: loggedInUser._id,
+              });
+      
+            return res.status(200).json(deleteUser);
+        } catch (err) {
+            console.log(err);
+            return res.status(500).json(err);
+        }
+    }
+)
 
 export { userRouter };
