@@ -11,7 +11,8 @@ export default async function attachCurrentUser(req, res, next){
         // exp: 1675953352
 
         const user = await UserModel.findOne(
-            { _id: userData._id } 
+            { _id: userData._id },
+            { password: 0 } // remoção password por segurança
         );
 
         if(!user) {

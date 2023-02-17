@@ -35,8 +35,9 @@ userRouter.post(
         });
 
         delete createdUser._doc.password; //deleção do password quando retorna p o front
+        const token = generateToken(createdUser);
 
-        return res.status(201).json(createdUser);
+        return res.status(201).json({user: createdUser, token: token});
     }
     catch(err){
         console.log(err);
@@ -65,7 +66,6 @@ userRouter.post(
                     email: user.email,
                     _id: user._id,
                     orders: user.orders,
-                    gender: user.gender,
                     birthday: user.birthday,
                     firstName: user.firstName,
                     lastName: user.lastName,
@@ -93,6 +93,7 @@ userRouter.get(
             await UserModel.findOne({ _id: req.currentUser._id })
             .populate('orders')
             .populate('adress'); 
+            delete user._doc.password;
             return res.status(200).json(user);
         } catch (err) {
             console.log(err);
