@@ -11,12 +11,21 @@ const userSchema = new Schema({
       },
     password: { type: String, required: true },
     orders: [{ type: Types.ObjectId, ref: "Order"  }],
-    gender: { type: String, enum: ["Masculino", "Feminino"]},
-    birthday: {type: Date, min: '1950-01-01', max: Date.now(), required: true},
+    birthday: {
+      type: Date, 
+      min: '1950-01-01', 
+      max: Date.now(), 
+      required: true,
+      // set: function (date) {
+      //   const year = date.getFullYear();
+      //   const month = date.getMonth() + 1;
+      //   const day = date.getDate();
+        
+      //   return new Date(`${year}-${month}-${day}`)}
+      },
     firstName: { type: String, required: true },
     lastName: { type: String, required: true },
     adress: [{ type: Types.ObjectId, ref: "Adress" }]
-    //PASSWORD HASH
 });
 
 export const UserModel= model("User", userSchema); 
