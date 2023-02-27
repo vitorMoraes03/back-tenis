@@ -22,4 +22,22 @@ shoesRouter.post(
     }
 );
 
+// Afinal tem alguma importância sim, preciso de um get pelo menos.
+
+shoesRouter.get(
+    "/",
+    async (req, res) => {
+        try {
+            const allShoes = await ShoesModel.find(
+                {}
+            );
+
+            return res.status(201).json(allShoes);
+        } catch (err) {
+            console.log(err);
+            return res.status(500).json(err);
+        }
+    }
+);
+
 export { shoesRouter };
