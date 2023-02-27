@@ -7,6 +7,8 @@ import { UserModel } from "../models/user.model.js";
 
 const orderRouter = express.Router();
 
+//TENHO Q FAZER ALTERACOES AQUI RELACIONADAS A SIZE AND STOCK e NOT: available
+
 orderRouter.post(
     "/create",
     isAuth,
@@ -23,7 +25,7 @@ orderRouter.post(
             req.body.shoes.map(async element => {    
                 await ShoesModel.findOneAndUpdate( 
                     { _id: element },
-                    { available: false },
+                    { available: false }, //TENHO Q MUDAR ISSO
                     { runValidators: true } );
              });
 
