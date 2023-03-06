@@ -7,8 +7,6 @@ import { UserModel } from "../models/user.model.js";
 
 const orderRouter = express.Router();
 
-//TENHO Q FAZER ALTERACOES AQUI RELACIONADAS A SIZE AND STOCK e NOT: available
-
 orderRouter.post(
     "/create",
     isAuth,
@@ -22,10 +20,11 @@ orderRouter.post(
                 userId: loggedInUser._id
             });
 
-            req.body.shoes.map(async element => {    
+            req.body.shoes.map(async element => { 
+                const propertyPath = `sizeAndStock.${element.size}`;
                 await ShoesModel.findOneAndUpdate( 
-                    { _id: element },
-                    { available: false }, //TENHO Q MUDAR ISSO
+                    { _id: element.id },
+                    { $inc: { [ propertyPath ]: -1 }}, 
                     { runValidators: true } );
              });
 
@@ -50,25 +49,24 @@ orderRouter.delete(
     async (req, res) => {
         try {
             const loggedInUser = req.currentUser;
-            const orderInfo = await OrderModel.findOne( { userId: loggedInUser._id } );
-
+            const orderInfo = await OrderModel.findOne( { _id: req.body.orderId } );
 
             orderInfo.shoes.map(async (element) => {
-                await ShoesModel.findOneAndUpdate(
-                    { _id: element },
-                    { available: true },
-                    { runValidators: true }
-                )
+                const propertyPath = `sizeAndStock.${element.size}`;
+                await ShoesModel.findOneAndUpdate( 
+                    { _id: element.id },
+                    { $inc: { [ propertyPath ]: +1 }}, 
+                    { runValidators: true } );
             })
 
             const deletedOrder = await OrderModel.deleteOne({ _id: orderInfo._id });
+
             await UserModel.findOneAndUpdate(
                 { _id: loggedInUser._id },
                 { $pull: { orders: orderInfo._id } },
                 { runValidators: true } 
             )
 
-        
             return res.status(201).json(deletedOrder);
         } catch (err) {
             console.log(err);

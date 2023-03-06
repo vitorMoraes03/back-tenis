@@ -62,7 +62,6 @@ userRouter.post(
 
             return res.status(200).json({
                 user: {
-                    userName: user.userName,
                     email: user.email,
                     _id: user._id,
                     orders: user.orders,
@@ -91,8 +90,7 @@ userRouter.get(
         try {
             const user = 
             await UserModel.findOne({ _id: req.currentUser._id })
-            .populate('orders')
-            .populate('adress'); 
+            .populate('orders');
             delete user._doc.password;
             return res.status(200).json(user);
         } catch (err) {
