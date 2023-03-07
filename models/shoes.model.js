@@ -7,6 +7,8 @@ const shoesSchema = new Schema({
     color: [ { type: String, enum: 
         ["Branco", "Preto", "Azul", 
         "Verde", "Marrom", "Cinza"] } ],
+    category: [ { type: String, enum: 
+        [ "Casual", "Esportivo", "Dia a dia" ] } ],
     //size: { type: Number, required: true },
     //available: { type: Boolean, default: true },
     sizeAndStock: {
