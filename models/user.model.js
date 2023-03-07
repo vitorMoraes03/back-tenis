@@ -14,14 +14,8 @@ const userSchema = new Schema({
       type: Date, 
       min: '1950-01-01', 
       max: Date.now(), 
-      required: true,
-      // set: function (date) {
-      //   const year = date.getFullYear();
-      //   const month = date.getMonth() + 1;
-      //   const day = date.getDate();
-        
-      //   return new Date(`${year}-${month}-${day}`)}
-      },
+      required: true
+    },
     firstName: { type: String, required: true },
     lastName: { type: String, required: true },
     adress: [{ type: Types.ObjectId, ref: "Adress" }]
