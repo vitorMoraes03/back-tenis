@@ -7,12 +7,10 @@ const shoesSchema = new Schema({
   color: [
     {
       type: String,
-      enum: ['white', 'black', 'blue', 'green', 'brown', 'gray'],
+      enum: ['white', 'black', 'blue', 'green', 'brown', 'gray', 'orange'],
     },
   ],
-  category: [{ type: String, enum: ['Casual', 'Esportivo', 'Dia a dia'] }],
-  // size: { type: Number, required: true },
-  // available: { type: Boolean, default: true },
+  category: { type: String, enum: ['Casual', 'Esportivo', 'Dia a dia'] },
   sizeAndStock: {
     32: { type: Number },
     33: { type: Number },
@@ -30,8 +28,6 @@ const shoesSchema = new Schema({
   },
   src: { type: String, required: true },
   alt: { type: String, required: true },
-  // order(seria interessante ter um controle de quantas orders
-  // de cada sapato? para o 'mais vendidos')
 });
 
 const ShoesModel = model('Shoes', shoesSchema);
