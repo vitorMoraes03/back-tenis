@@ -14,11 +14,8 @@ const userSchema = new Schema({
     type: Date,
     min: '1950-01-01',
     max: Date.now(),
-    required: true,
   },
   firstName: { type: String, required: true },
-  lastName: { type: String, required: true },
-  adress: [{ type: Types.ObjectId, ref: 'Adress' }],
 });
 
 const UserModel = model('User', userSchema);

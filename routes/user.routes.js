@@ -43,7 +43,6 @@ userRouter.post('/login', async (req, res) => {
     const user = await UserModel.findOne({ email });
 
     if (!user) {
-      console.log('oi');
       return res.status(404).json({ msg: 'Email ou senha inválidos' });
     }
 
@@ -73,7 +72,7 @@ userRouter.post('/login', async (req, res) => {
 userRouter.get('/profile', isAuth, attachCurrentUser, async (req, res) => {
   try {
     const user = await UserModel.findOne({ _id: req.currentUser._id }).populate(
-      'orders'
+      'orders',
     );
     delete user._doc.password;
     return res.status(200).json(user);
@@ -90,9 +89,9 @@ userRouter.put('/edit', isAuth, attachCurrentUser, async (req, res) => {
     const updatedUser = await UserModel.findOneAndUpdate(
       { _id: loggedInUser._id },
       { ...req.body },
-      { new: true, runValidators: true }
+      { new: true, runValidators: true },
     );
-
+    delete updatedUser._doc.password;
     return res.status(200).json(updatedUser);
   } catch (err) {
     console.log(err);
