@@ -19,6 +19,6 @@ app.use('/user', userRouter);
 app.use('/order', orderRouter);
 app.use('/adress', adressRouter);
 
-// app.listen(Number(process.env.PORT), () => {
-//   console.log(`Server rodando na porta ${process.env.PORT}`);
-// });
+app.listen(Number(process.env.PORT), () => {
+  console.log(`Server rodando na porta ${process.env.PORT}`);
+});

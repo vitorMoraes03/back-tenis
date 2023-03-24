@@ -22,14 +22,14 @@ orderRouter.post('/create', isAuth, attachCurrentUser, async (req, res) => {
       await ShoesModel.findOneAndUpdate(
         { _id: element.id },
         { $inc: { [propertyPath]: -1 } },
-        { runValidators: true }
+        { runValidators: true },
       );
     });
 
     await UserModel.findOneAndUpdate(
       { _id: loggedInUser._id },
       { $push: { orders: order._doc._id } },
-      { runValidators: true }
+      { runValidators: true },
     );
 
     return res.status(201).json(order);
@@ -49,7 +49,7 @@ orderRouter.delete('/delete', isAuth, attachCurrentUser, async (req, res) => {
       await ShoesModel.findOneAndUpdate(
         { _id: element.id },
         { $inc: { [propertyPath]: +1 } },
-        { runValidators: true }
+        { runValidators: true },
       );
     });
 
@@ -58,7 +58,7 @@ orderRouter.delete('/delete', isAuth, attachCurrentUser, async (req, res) => {
     await UserModel.findOneAndUpdate(
       { _id: loggedInUser._id },
       { $pull: { orders: orderInfo._id } },
-      { runValidators: true }
+      { runValidators: true },
     );
 
     return res.status(201).json(deletedOrder);
