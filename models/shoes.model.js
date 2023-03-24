@@ -7,10 +7,10 @@ const shoesSchema = new Schema({
   color: [
     {
       type: String,
-      enum: ['white', 'black', 'blue', 'green', 'brown', 'gray', 'orange'],
+      enum: ['white', 'black', 'blue', 'green', 'brown', 'gray', 'orange', 'yellow', 'pink', 'red', 'purple'],
     },
   ],
-  category: { type: String, enum: ['Casual', 'Esportivo', 'Dia a dia'] },
+  category: { type: String, enum: ['Casual', 'Esportivo', 'Sofisticado'] },
   sizeAndStock: {
     32: { type: Number },
     33: { type: Number },
