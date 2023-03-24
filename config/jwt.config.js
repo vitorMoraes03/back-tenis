@@ -1,4 +1,5 @@
 import jwt from 'jsonwebtoken';
+import * as dotenv from 'dotenv';
 
 // O JSON Web Token é um padrão da Internet para a criação de dados
 // com assinatura opcional e/ou criptografia cujo payload contém o JSON
@@ -6,6 +7,8 @@ import jwt from 'jsonwebtoken';
 // um segredo privado ou uma chave pública/privada.
 
 // Ou seja, aqui irá ser gerado o Token.
+
+dotenv.config();
 
 function generateToken(user) {
   const { _id, name, email } = user;
