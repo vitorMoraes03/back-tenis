@@ -12,9 +12,7 @@ const app = express();
 connectToDB();
 
 app.use(express.json());
-app.use(cors({
-  origin: '*',
-}));
+app.use(cors());
 
 app.use('/shoes', shoesRouter);
 app.use('/user', userRouter);
