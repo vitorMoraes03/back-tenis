@@ -22,7 +22,7 @@ adressRouter.post('/create', isAuth, attachCurrentUser, async (req, res) => {
     await UserModel.findOneAndUpdate(
       { _id: loggedInUser._id },
       { $push: { adress: adress._doc._id } },
-      { runValidators: true }
+      { runValidators: true },
     );
 
     return res.status(201).json(adress);

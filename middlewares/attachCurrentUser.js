@@ -8,7 +8,7 @@ async function attachCurrentUser(req, res, next) {
 
     const user = await UserModel.findOne(
       { _id: userData._id },
-      { password: 0 } // remoção password por segurança
+      { password: 0 }, // remoção password por segurança
     );
 
     if (!user) {
