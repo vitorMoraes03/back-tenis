@@ -23,7 +23,7 @@ https://motionsneakers.netlify.app
 
 ## Objetivos
 
-A primeira parte foi a construção de uma API utilizando o Express.js, definição de modelos e rotas, com sistema de autenticação. Em seguinda, no front, utilizei o React, onde o maior desafio foi a construção de filtros com extensiva manipulação de arrays, a utilização do contexto do React, e a correta distribuição de props pela aplicação. Apliquei ESLint e Prettier para formatação do código.
+A primeira parte foi a construção de uma API utilizando o Express.js, definição de modelos e rotas, com sistema de autenticação. Em seguida, no front, utilizei o React, onde o maior desafio foi a construção de filtros com extensiva manipulação de arrays, a utilização do contexto do React, e a correta distribuição de props pela aplicação. Apliquei ESLint e Prettier para formatação do código.
 
 O site é responsivo para dispositivos móveis, com algumas modificações simples de layout. O usuário deve fazer cadastro (simplificado) para poder realizar sua compras. Toda a arte foi criada no Midjourney.
 
